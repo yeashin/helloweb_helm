@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: hello
+        tier: web
+    spec:
+     containers:
+      - name: hello-app
+        image: {{ .Values.deployment.image }}
+        ports:
+        - containerPort: 8080
+        
+       
